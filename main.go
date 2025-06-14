@@ -1,8 +1,16 @@
 package main
 
-func main() {
-	arroz := 2
-	feijao := 3
+import (
+	"log"
+	"net/http"
 
-	println("Valor:", arroz+feijao)
+	"github.comluizhpferreirago-standards/handler"
+)
+
+func main() {
+	http.HandleFunc("/tasks", handler.TasksHandler) //GET, POST
+	http.HandleFunc("/tasks/", handler.TaskByIDHandler)
+
+	log.Println("Servidor rodando em http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
